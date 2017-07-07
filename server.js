@@ -22,11 +22,11 @@ app.use(require('webpack-hot-middleware')(compiler))
 
 app.use(express.static('docs-site'))
 
-app.listen(8080, '0.0.0.0', function (err) {
+app.listen(9090, '0.0.0.0', function (err) {
   if (err) {
     console.log(err)
     return
   }
 
-  console.log('Listening at http://localhost:8080')
+  console.log('Listening at http://localhost:9090')
 })

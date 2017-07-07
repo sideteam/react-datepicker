@@ -1,6 +1,8 @@
 import DateInput from './date_input'
 import Calendar from './calendar'
+import PropTypes from 'prop-types'
 import React from 'react'
+import createReactClass from 'create-react-class'
 import TetherComponent from './tether_component'
 import classnames from 'classnames'
 import {isSameDay, isDayDisabled, isDayInRange} from './date_utils'
@@ -14,71 +16,71 @@ var WrappedCalendar = onClickOutside(Calendar)
  * General datepicker component.
  */
 
-var DatePicker = React.createClass({
+export default createReactClass({
   displayName: 'DatePicker',
 
   propTypes: {
-    autoComplete: React.PropTypes.string,
-    autoFocus: React.PropTypes.bool,
-    calendarClassName: React.PropTypes.string,
-    children: React.PropTypes.node,
-    className: React.PropTypes.string,
-    customInput: React.PropTypes.element,
-    dateFormat: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.array
+    autoComplete: PropTypes.string,
+    autoFocus: PropTypes.bool,
+    calendarClassName: PropTypes.string,
+    children: PropTypes.node,
+    className: PropTypes.string,
+    customInput: PropTypes.element,
+    dateFormat: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array
     ]),
-    dateFormatCalendar: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-    disabledKeyboardNavigation: React.PropTypes.bool,
-    dropdownMode: React.PropTypes.oneOf(['scroll', 'select']).isRequired,
-    endDate: React.PropTypes.object,
-    excludeDates: React.PropTypes.array,
-    filterDate: React.PropTypes.func,
-    fixedHeight: React.PropTypes.bool,
-    highlightDates: React.PropTypes.array,
-    id: React.PropTypes.string,
-    includeDates: React.PropTypes.array,
-    inline: React.PropTypes.bool,
-    isClearable: React.PropTypes.bool,
-    locale: React.PropTypes.string,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    monthsShown: React.PropTypes.number,
-    name: React.PropTypes.string,
-    onBlur: React.PropTypes.func,
-    onChange: React.PropTypes.func.isRequired,
-    onChangeRaw: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onMonthChange: React.PropTypes.func,
-    openToDate: React.PropTypes.object,
-    peekNextMonth: React.PropTypes.bool,
-    placeholderText: React.PropTypes.string,
-    popoverAttachment: React.PropTypes.string,
-    popoverTargetAttachment: React.PropTypes.string,
-    popoverTargetOffset: React.PropTypes.string,
-    readOnly: React.PropTypes.bool,
-    renderCalendarTo: React.PropTypes.any,
-    required: React.PropTypes.bool,
-    scrollableYearDropdown: React.PropTypes.bool,
-    selected: React.PropTypes.oneOfType([
-      React.PropTypes.object,
-      React.PropTypes.arrayOf(React.PropTypes.object)
+    dateFormatCalendar: PropTypes.string,
+    disabled: PropTypes.bool,
+    disabledKeyboardNavigation: PropTypes.bool,
+    dropdownMode: PropTypes.oneOf(['scroll', 'select']).isRequired,
+    endDate: PropTypes.object,
+    excludeDates: PropTypes.array,
+    filterDate: PropTypes.func,
+    fixedHeight: PropTypes.bool,
+    highlightDates: PropTypes.array,
+    id: PropTypes.string,
+    includeDates: PropTypes.array,
+    inline: PropTypes.bool,
+    isClearable: PropTypes.bool,
+    locale: PropTypes.string,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    monthsShown: PropTypes.number,
+    name: PropTypes.string,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func.isRequired,
+    onChangeRaw: PropTypes.func,
+    onFocus: PropTypes.func,
+    onMonthChange: PropTypes.func,
+    openToDate: PropTypes.object,
+    peekNextMonth: PropTypes.bool,
+    placeholderText: PropTypes.string,
+    popoverAttachment: PropTypes.string,
+    popoverTargetAttachment: PropTypes.string,
+    popoverTargetOffset: PropTypes.string,
+    readOnly: PropTypes.bool,
+    renderCalendarTo: PropTypes.any,
+    required: PropTypes.bool,
+    scrollableYearDropdown: PropTypes.bool,
+    selected: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.arrayOf(PropTypes.object)
     ]),
-    selectsEnd: React.PropTypes.bool,
-    selectsStart: React.PropTypes.bool,
-    showMonthDropdown: React.PropTypes.bool,
-    showWeekNumbers: React.PropTypes.bool,
-    showYearDropdown: React.PropTypes.bool,
-    forceShowMonthNavigation: React.PropTypes.bool,
-    startDate: React.PropTypes.object,
-    tabIndex: React.PropTypes.number,
-    tetherConstraints: React.PropTypes.array,
-    title: React.PropTypes.string,
-    todayButton: React.PropTypes.string,
-    utcOffset: React.PropTypes.number,
-    withPortal: React.PropTypes.bool,
-    multipleSelect: React.PropTypes.bool,
+    selectsEnd: PropTypes.bool,
+    selectsStart: PropTypes.bool,
+    showMonthDropdown: PropTypes.bool,
+    showWeekNumbers: PropTypes.bool,
+    showYearDropdown: PropTypes.bool,
+    forceShowMonthNavigation: PropTypes.bool,
+    startDate: PropTypes.object,
+    tabIndex: PropTypes.number,
+    tetherConstraints: PropTypes.array,
+    title: PropTypes.string,
+    todayButton: PropTypes.string,
+    utcOffset: PropTypes.number,
+    withPortal: PropTypes.bool,
+    multipleSelect: PropTypes.bool
   },
 
   getDefaultProps () {
@@ -112,7 +114,7 @@ var DatePicker = React.createClass({
       if (Array.isArray(this.props.selected)) {
         preSelection = this.props.selected.map((dateSelected) => {
           return moment(dateSelected)
-        });
+        })
       } else {
         preSelection = moment()
       }
@@ -203,31 +205,29 @@ var DatePicker = React.createClass({
       return
     }
     if (!isSameDay(this.props.selected, changedDate)) {
-      if (changedDate !== null) {
-        if (this.props.multipleSelect) {
-          changedDate = new Array(changedDate);
-          const preSelected = Array.isArray(this.state.preSelection)
-            ? changedDate.concat(this.state.preSelection)
-            : changedDate
-          this.setState({ preSelection: preSelected })
-          this.props.onChange(preSelected, event)
-        } else {
-          this.setState({
-            preSelection: changedDate
-          })
-          this.props.onChange(changedDate, event)
-        }
+      if (this.props.multipleSelect) {
+        changedDate = new Array(changedDate)
+        const preSelected = Array.isArray(this.state.preSelection)
+          ? changedDate.concat(this.state.preSelection)
+          : changedDate
+        this.setState({ preSelection: preSelected })
+        this.props.onChange(preSelected, event)
+      } else {
+        this.setState({
+          preSelection: changedDate
+        })
+        this.props.onChange(changedDate, event)
       }
     } else {
       if (changedDate !== null) {
         if (this.props.multipleSelect) {
           const preSelected = this.state.preSelection
-          let index;
+          let index
           preSelected.find((item, idx) => {
             if (item.format(`L`) === changedDate.format(`L`)) {
-              index = idx;
+              index = idx
             }
-          });
+          })
           preSelected.splice(index, 1)
           this.setState({ preSelection: preSelected })
           this.props.onChange(preSelected, event)
@@ -361,6 +361,7 @@ var DatePicker = React.createClass({
     var className = classnames(this.props.className, {
       [outsideClickIgnoreClass]: this.state.open
     })
+
     return <DateInput
         ref="input"
         id={this.props.id}
@@ -388,7 +389,8 @@ var DatePicker = React.createClass({
         readOnly={this.props.readOnly}
         required={this.props.required}
         tabIndex={this.props.tabIndex}
-        customInput={this.props.customInput} />
+        customInput={this.props.customInput}
+        multipleSelect={this.props.multipleSelect}/>
   },
 
   renderClearButton () {
@@ -441,5 +443,3 @@ var DatePicker = React.createClass({
     )
   }
 })
-
-module.exports = DatePicker

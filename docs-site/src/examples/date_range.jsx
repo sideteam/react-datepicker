@@ -1,18 +1,15 @@
-var React = require('react')
-var DatePicker = require('react-datepicker')
-var moment = require('moment')
+import React, { Component } from 'react'
+import createReactClass from 'create-react-class'
+import DatePicker from 'react-datepicker'
+import moment from 'moment'
 
-var DateRange = React.createClass({
-  displayName: 'DateRange',
+export default class DateRange extends Component {
+  state = {
+    startDate: moment('2014-02-08'),
+    endDate: moment('2014-02-10')
+  };
 
-  getInitialState: function () {
-    return {
-      startDate: moment('2014-02-08'),
-      endDate: moment('2014-02-10')
-    }
-  },
-
-  handleChange: function ({ startDate, endDate }) {
+  handleChange = ({ startDate, endDate }) => {
     startDate = startDate || this.state.startDate
     endDate = endDate || this.state.endDate
 
@@ -23,17 +20,17 @@ var DateRange = React.createClass({
     }
 
     this.setState({ startDate, endDate })
-  },
+  };
 
-  handleChangeStart: function (startDate) {
+  handleChangeStart = (startDate) => {
     this.handleChange({ startDate })
-  },
+  };
 
-  handleChangeEnd: function (endDate) {
+  handleChangeEnd = (endDate) => {
     this.handleChange({ endDate })
-  },
+  };
 
-  render: function () {
+  render() {
     return <div className="row">
       <pre className="column example__code">
         <code className="jsx">
@@ -67,6 +64,4 @@ var DateRange = React.createClass({
       </div>
     </div>
   }
-})
-
-module.exports = DateRange
+}

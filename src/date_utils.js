@@ -18,7 +18,7 @@ export function isSameDayInArray (moment1, momentArray) {
     let inArray = false
     momentArray.map((moment2) => {
       if (moment1.isSame(moment2, 'day')) {
-        inArray = true;
+        inArray = true
         return
       }
     })
@@ -36,6 +36,7 @@ export function isSameUtcOffset (moment1, moment2) {
 }
 
 export function isDayInRange (day, startDate, endDate) {
+  if (!day) return false
   const before = startDate.clone().startOf('day').subtract(1, 'seconds')
   const after = endDate.clone().startOf('day').add(1, 'seconds')
   return day.clone().startOf('day').isBetween(before, after)
@@ -52,7 +53,7 @@ export function isDayDisabled (day, { minDate, maxDate, excludeDates, includeDat
 
 export function allDaysDisabledBefore (day, unit, { minDate, includeDates } = {}) {
   if (Array.isArray(day)) {
-    day = getMinimumDate(day);
+    day = getMinimumDate(day)
   }
   const dateBefore = day.clone().subtract(1, unit)
   return (minDate && dateBefore.isBefore(minDate, unit)) ||
@@ -62,7 +63,7 @@ export function allDaysDisabledBefore (day, unit, { minDate, includeDates } = {}
 
 export function allDaysDisabledAfter (day, unit, { maxDate, includeDates } = {}) {
   if (Array.isArray(day)) {
-    day = getMaximunDate(day);
+    day = getMaximunDate(day)
   }
   const dateAfter = day.clone().add(1, unit)
   return (maxDate && dateAfter.isAfter(maxDate, unit)) ||
@@ -97,7 +98,7 @@ export function getMinimumDate (dates) {
         ? current
         : pre
     })
-  } 
+  }
 }
 
 export function getMaximunDate (dates) {

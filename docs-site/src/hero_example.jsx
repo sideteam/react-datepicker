@@ -2,25 +2,23 @@ import React from 'react'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
 
-export default React.createClass({
-  displayName: 'HeroExample',
+export default class extends React.Component {
+  static displayName = 'HeroExample';
 
-  getInitialState () {
-    return {
-      startDate: moment()
-    }
-  },
+  state = {
+    startDate: moment()
+  };
 
-  handleChange (date) {
+  handleChange = (date) => {
     this.setState({
       startDate: date
     })
-  },
+  };
 
-  render () {
+  render() {
     return <DatePicker
         autoFocus
         selected={this.state.startDate}
         onChange={this.handleChange} />
   }
-})
+}

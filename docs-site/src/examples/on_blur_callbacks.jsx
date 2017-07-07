@@ -1,30 +1,28 @@
 import React from 'react'
 import DatePicker from 'react-datepicker'
 
-export default React.createClass({
-  displayName: 'Disabled',
+export default class extends React.Component {
+  static displayName = 'Disabled';
 
-  getInitialState () {
-    return {
-      startDate: null
-    }
-  },
+  state = {
+    startDate: null
+  };
 
-  handleChange: function (date) {
+  handleChange = (date) => {
     this.setState({
       startDate: date
     })
-  },
+  };
 
-  handleOnBlur: function (date) {
+  handleOnBlur = (date) => {
     if (date === null) {
       console.log('selected date: %s', date)
     } else {
       console.log('selected date: %s', date.format('DD/MM/YYYY'))
     }
-  },
+  };
 
-  render () {
+  render() {
     return <div className="row">
       <pre className="column example__code">
         <code className="js">
@@ -57,4 +55,4 @@ export default React.createClass({
       </div>
     </div>
   }
-})
+}

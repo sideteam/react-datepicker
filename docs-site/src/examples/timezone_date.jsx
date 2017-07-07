@@ -1,9 +1,10 @@
 import React from 'react'
+import createReactClass from 'create-react-class';
 import moment from 'moment'
 
 import DatePicker from 'react-datepicker'
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'Default',
 
   getInitialState () {
@@ -87,4 +88,4 @@ export default React.createClass({
       </div>
     </div>
   }
-})
+});

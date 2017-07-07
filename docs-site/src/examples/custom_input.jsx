@@ -3,15 +3,15 @@ import DatePicker from 'react-datepicker'
 import moment from 'moment'
 
 /* eslint-disable react/no-multi-comp */
-var ExampleCustomInput = React.createClass({
-  displayName: 'ExampleCustomInput',
+class ExampleCustomInput extends React.Component {
+  static displayName = 'ExampleCustomInput';
 
-  propTypes: {
+  static propTypes = {
     onClick: React.PropTypes.func,
     value: React.PropTypes.string
-  },
+  };
 
-  render () {
+  render() {
     return (
       <button
           className="example-custom-input"
@@ -20,24 +20,22 @@ var ExampleCustomInput = React.createClass({
       </button>
     )
   }
-})
+}
 
-export default React.createClass({
-  displayName: 'Custom Input',
+export default class extends React.Component {
+  static displayName = 'Custom Input';
 
-  getInitialState () {
-    return {
-      startDate: moment()
-    }
-  },
+  state = {
+    startDate: moment()
+  };
 
-  handleChange (date) {
+  handleChange = (date) => {
     this.setState({
       startDate: date
     })
-  },
+  };
 
-  render () {
+  render() {
     return <div className="row">
       <pre className="column example__code">
         <code className="jsx">
@@ -76,4 +74,4 @@ export default React.createClass({
       </div>
     </div>
   }
-})
+}

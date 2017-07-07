@@ -1,10 +1,10 @@
 {
-  "author": "HackerOne (edit by Side)",
-  "name": "react-datepicker-multiple",
+  "author": "HackerOne (edit by Side) (edit by WeWork)",
+  "name": "multiple-react-datepicker",
   "description": "A simple and reusable datepicker component for React",
-  "version": "0.41.2",
+  "version": "0.41.6",
   "license": "MIT",
-  "homepage": "https://github.com/sideteam/react-datepicker",
+  "homepage": "https://github.com/wework/react-datepicker",
   "main": "dist/react-datepicker.min.js",
   "style": "dist/react-datepicker.min.css",
   "files": [
@@ -21,10 +21,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/sideteam/react-datepicker.git"
+    "url": "git://github.com/wework/react-datepicker.git"
   },
   "bugs": {
-    "url": "https://github.com/Hacker0x01/react-datepicker/issues"
+    "url": "https://github.com/wework/react-datepicker/issues"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",
@@ -65,13 +65,13 @@
     "karma-sinon": "^1.0.5",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.1",
-    "lodash": "^4.17.4",
     "mocha": "^3.2.0",
     "node-sass": "^4.5.0",
-    "react": "^15.4.2",
-    "react-addons-test-utils": "^15.4.2",
+    "prop-types": "^15.5.10",
+    "react": "^15.4.4",
+    "react-addons-test-utils": "^15.4.4",
     "react-docgen": "^2.13.0",
-    "react-dom": "^15.4.2",
+    "react-dom": "^15.4.4",
     "react-transform-hmr": "^1.0.4",
     "sass-loader": "^4.1.1",
     "sinon": "^1.17.7",
@@ -87,6 +87,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "lodash": "^4.17.4",
     "moment": "^2.17.1",
     "react-onclickoutside": "^5.9.0",
     "tether": "^1.4.0"
@@ -95,6 +96,7 @@
     "build": "NODE_ENV=production grunt build",
     "start": "node server.js",
     "test": "NODE_ENV=test grunt travis",
+    "tdd": "NODE_ENV=test karma start --auto-watch --no-single-run",
     "eslint": "eslint **/*.jsx",
     "prepublish": "npm run build",
     "codecov": "cat coverage/*/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js"

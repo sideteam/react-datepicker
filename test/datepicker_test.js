@@ -474,13 +474,11 @@ describe('DatePicker', () => {
   })
 
   it('should correctly clear date with empty input string', () => {
-    var cleared = false
+    let date
     function handleChange (d) {
       // Internally DateInput calls it's onChange prop with null
       // when the input value is an empty string
-      if (d === null) {
-        cleared = true
-      }
+      date = d
     }
     var datePicker = TestUtils.renderIntoDocument(
       <DatePicker
@@ -490,7 +488,7 @@ describe('DatePicker', () => {
     var input = ReactDOM.findDOMNode(datePicker.refs.input)
     input.value = ''
     TestUtils.Simulate.change(input)
-    expect(cleared).to.be.true
+    expect(date).to.be.null
   })
   it('should correctly update the date input when utcOffset is all that changes on the selected date', () => {
     var date = moment('2016-11-22T00:00:00Z').utcOffset(-6)

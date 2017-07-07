@@ -1,22 +1,20 @@
 import React from 'react'
 import DatePicker from 'react-datepicker'
 
-export default React.createClass({
-  displayName: 'CustomStartDate',
+export default class extends React.Component {
+  static displayName = 'CustomStartDate';
 
-  getInitialState () {
-    return {
-      startDate: null
-    }
-  },
+  state = {
+    startDate: null
+  };
 
-  handleChange (date) {
+  handleChange = (date) => {
     this.setState({
       startDate: date
     })
-  },
+  };
 
-  render () {
+  render() {
     return <div className="row">
       <pre className="column example__code">
         <code className="jsx">
@@ -36,4 +34,4 @@ export default React.createClass({
       </div>
     </div>
   }
-})
+}

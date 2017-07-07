@@ -2,10 +2,10 @@ import React from 'react'
 import ExampleComponents from './example_components.jsx'
 import HeroExample from './hero_example.jsx'
 
-export default React.createClass({
-  displayName: 'Root',
+export default class extends React.Component {
+  static displayName = 'Root';
 
-  render () {
+  render() {
     return (
       <div>
         <div className="hero">
@@ -58,4 +58,4 @@ export default React.createClass({
       </div>
     )
   }
-})
+}

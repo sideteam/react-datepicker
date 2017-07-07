@@ -1,54 +1,45 @@
 import moment from 'moment'
-import React from 'react'
+import PropTypes from 'prop-types';
+import React, { Component } from 'react'
 import { isSameDay, isDayDisabled, isSameUtcOffset } from './date_utils'
+import map from 'lodash/map';
 
-var DateInput = React.createClass({
-  displayName: 'DateInput',
+export default class DateInput extends Component {
+  static displayName = 'DateInput';
 
-  propTypes: {
-    customInput: React.PropTypes.element,
-    date: React.PropTypes.object,
-    dateFormat: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.array
+  static propTypes = {
+    customInput: PropTypes.element,
+    date: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.arrayOf(PropTypes.object),
     ]),
-    disabled: React.PropTypes.bool,
-    excludeDates: React.PropTypes.array,
-    filterDate: React.PropTypes.func,
-    includeDates: React.PropTypes.array,
-    locale: React.PropTypes.string,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    onBlur: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    onChangeRaw: React.PropTypes.func,
-    onChangeDate: React.PropTypes.func
-  },
+    dateFormat: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array
+    ]),
+    disabled: PropTypes.bool,
+    excludeDates: PropTypes.array,
+    filterDate: PropTypes.func,
+    includeDates: PropTypes.array,
+    locale: PropTypes.string,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    onChangeRaw: PropTypes.func,
+    onChangeDate: PropTypes.func,
+    multipleSelect: PropTypes.bool
+  };
 
-  getDefaultProps () {
-    return {
-      dateFormat: 'L'
-    }
-  },
+  static defaultProps = {
+    dateFormat: 'L'
+  };
 
-  getInitialState () {
-    return {
-      value: this.safeDateFormat(this.props)
-    }
-  },
+  componentWillReceiveProps(newProps) {
+    this.setState({ value: this.safeDateFormat(newProps) });
+  }
 
-  componentWillReceiveProps (newProps) {
-    if (!isSameDay(newProps.date, this.props.date) ||
-        !isSameUtcOffset(newProps.date, this.props.date) ||
-          newProps.locale !== this.props.locale ||
-          newProps.dateFormat !== this.props.dateFormat) {
-      this.setState({
-        value: this.safeDateFormat(newProps)
-      })
-    }
-  },
-
-  handleChange (event) {
+  handleChange = (event) => {
     if (this.props.onChange) {
       this.props.onChange(event)
     }
@@ -58,9 +49,9 @@ var DateInput = React.createClass({
     if (!event.defaultPrevented) {
       this.handleChangeDate(event.target.value)
     }
-  },
+  };
 
-  handleChangeDate (value) {
+  handleChangeDate = (value) => {
     if (this.props.onChangeDate) {
       var date = moment(value.trim(), this.props.dateFormat, this.props.locale || moment.locale(), true)
       if (date.isValid() && !isDayDisabled(date, this.props)) {
@@ -70,29 +61,41 @@ var DateInput = React.createClass({
       }
     }
     this.setState({value})
-  },
+  };
 
-  safeDateFormat (props) {
-    return props.date && props.date.clone()
-      .locale(props.locale || moment.locale())
-      .format(Array.isArray(props.dateFormat) ? props.dateFormat[0] : props.dateFormat) || ''
-  },
+  safeDateFormat = (props) => {
+    const dateOrDates = Array.isArray(props.date) ? props.date.filter(d => d && d.isValid()) : props.date;
+    if (!dateOrDates) return '';
+    return dateOrDates && (this.props.multipleSelect ? map(dateOrDates, this.formatDate(props)) : this.formatDate(props)(dateOrDates));
+  };
 
-  handleBlur (event) {
+  formatDate = (props) => {
+    return (date) => (
+      date.clone()
+        .locale(props.locale || moment.locale())
+        .format(Array.isArray(props.dateFormat) ? props.dateFormat[0] : props.dateFormat) || ''
+    );
+  };
+
+  handleBlur = (event) => {
     this.setState({
       value: this.safeDateFormat(this.props)
     })
     if (this.props.onBlur) {
       this.props.onBlur(event)
     }
-  },
+  };
 
-  focus () {
+  focus = () => {
     this.refs.input.focus()
-  },
+  };
 
-  render () {
-    const { customInput, date, locale, minDate, maxDate, excludeDates, includeDates, filterDate, dateFormat, onChangeDate, onChangeRaw, ...rest } = this.props // eslint-disable-line no-unused-vars
+  state = {
+    value: this.safeDateFormat(this.props)
+  };
+
+  render() {
+    const { multipleSelect, customInput, date, locale, minDate, maxDate, excludeDates, includeDates, filterDate, dateFormat, onChangeDate, onChangeRaw, ...rest } = this.props // eslint-disable-line no-unused-vars
 
     if (customInput) {
       return React.cloneElement(customInput, {
@@ -112,6 +115,4 @@ var DateInput = React.createClass({
           onChange={this.handleChange}/>
     }
   }
-})
-
-module.exports = DateInput
+}

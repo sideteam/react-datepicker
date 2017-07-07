@@ -2,22 +2,20 @@ import React from 'react'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
 
-export default React.createClass({
-  displayName: 'Default',
+export default class extends React.Component {
+  static displayName = 'Default';
 
-  getInitialState () {
-    return {
-      startDate: moment()
-    }
-  },
+  state = {
+    startDate: moment()
+  };
 
-  handleChange (date) {
+  handleChange = (date) => {
     this.setState({
       startDate: date
     })
-  },
+  };
 
-  render () {
+  render() {
     return <div className="row">
       <pre className="column example__code">
         <code className="jsx">
@@ -33,4 +31,4 @@ export default React.createClass({
       </div>
     </div>
   }
-})
+}

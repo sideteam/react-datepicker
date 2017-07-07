@@ -1,27 +1,25 @@
 import React from 'react'
 import DatePicker from 'react-datepicker'
 
-export default React.createClass({
-  displayName: 'FilterDates',
+export default class extends React.Component {
+  static displayName = 'FilterDates';
 
-  getInitialState () {
-    return {
-      date: null
-    }
-  },
+  state = {
+    date: null
+  };
 
-  handleChange (date) {
+  handleChange = (date) => {
     this.setState({
       date: date
     })
-  },
+  };
 
-  isWeekday (date) {
+  isWeekday = (date) => {
     const day = date.day()
     return day !== 0 && day !== 6
-  },
+  };
 
-  render () {
+  render() {
     return <div className="row">
       <pre className="column example__code">
         <code className="jsx">
@@ -41,4 +39,4 @@ export default React.createClass({
       </div>
     </div>
   }
-})
+}

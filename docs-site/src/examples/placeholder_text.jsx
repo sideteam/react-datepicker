@@ -1,10 +1,10 @@
 import React from 'react'
 import DatePicker from 'react-datepicker'
 
-export default React.createClass({
-  displayName: 'PlaceholderText',
+export default class extends React.Component {
+  static displayName = 'PlaceholderText';
 
-  render () {
+  render() {
     return <div className="row">
       <pre className="column example__code">
         <code className="jsx">
@@ -16,4 +16,4 @@ export default React.createClass({
       </div>
     </div>
   }
-})
+}
