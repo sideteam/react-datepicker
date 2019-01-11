@@ -3,7 +3,9 @@ import YearDropdown from './year_dropdown'
 import MonthDropdown from './month_dropdown'
 import Month from './month'
 import React from 'react'
+import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import createReactClass from 'create-react-class'
 import { isSameDay, allDaysDisabledBefore, allDaysDisabledAfter, getEffectiveMinDate, getEffectiveMaxDate, getMinimumDate } from './date_utils'
 
 const DROPDOWN_FOCUS_CLASSNAMES = [
@@ -16,52 +18,52 @@ const isDropdownSelect = (element = {}) => {
   return DROPDOWN_FOCUS_CLASSNAMES.some(testClassname => classNames.indexOf(testClassname) >= 0)
 }
 
-var Calendar = React.createClass({
+var Calendar = createReactClass({
   displayName: 'Calendar',
 
   propTypes: {
-    className: React.PropTypes.string,
-    children: React.PropTypes.node,
-    dateFormat: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.array
+    className: PropTypes.string,
+    children: PropTypes.node,
+    dateFormat: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array
     ]).isRequired,
-    dropdownMode: React.PropTypes.oneOf(['scroll', 'select']).isRequired,
-    endDate: React.PropTypes.object,
-    excludeDates: React.PropTypes.array,
-    filterDate: React.PropTypes.func,
-    fixedHeight: React.PropTypes.bool,
-    highlightDates: React.PropTypes.array,
-    includeDates: React.PropTypes.array,
-    inline: React.PropTypes.bool,
-    locale: React.PropTypes.string,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    monthsShown: React.PropTypes.number,
-    onClickOutside: React.PropTypes.func.isRequired,
-    onMonthChange: React.PropTypes.func,
-    forceShowMonthNavigation: React.PropTypes.bool,
-    onDropdownFocus: React.PropTypes.func,
-    onSelect: React.PropTypes.func.isRequired,
-    openToDate: React.PropTypes.object,
-    peekNextMonth: React.PropTypes.bool,
-    scrollableYearDropdown: React.PropTypes.bool,
-    preSelection: React.PropTypes.oneOfType([
-      React.PropTypes.object,
-      React.PropTypes.arrayOf(React.PropTypes.object)
+    dropdownMode: PropTypes.oneOf(['scroll', 'select']).isRequired,
+    endDate: PropTypes.object,
+    excludeDates: PropTypes.array,
+    filterDate: PropTypes.func,
+    fixedHeight: PropTypes.bool,
+    highlightDates: PropTypes.array,
+    includeDates: PropTypes.array,
+    inline: PropTypes.bool,
+    locale: PropTypes.string,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    monthsShown: PropTypes.number,
+    onClickOutside: PropTypes.func.isRequired,
+    onMonthChange: PropTypes.func,
+    forceShowMonthNavigation: PropTypes.bool,
+    onDropdownFocus: PropTypes.func,
+    onSelect: PropTypes.func.isRequired,
+    openToDate: PropTypes.object,
+    peekNextMonth: PropTypes.bool,
+    scrollableYearDropdown: PropTypes.bool,
+    preSelection: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.arrayOf(PropTypes.object)
     ]),
-    selected: React.PropTypes.oneOfType([
-      React.PropTypes.object,
-      React.PropTypes.arrayOf(React.PropTypes.object)
+    selected: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.arrayOf(PropTypes.object)
     ]),
-    selectsEnd: React.PropTypes.bool,
-    selectsStart: React.PropTypes.bool,
-    showMonthDropdown: React.PropTypes.bool,
-    showWeekNumbers: React.PropTypes.bool,
-    showYearDropdown: React.PropTypes.bool,
-    startDate: React.PropTypes.object,
-    todayButton: React.PropTypes.string,
-    utcOffset: React.PropTypes.number
+    selectsEnd: PropTypes.bool,
+    selectsStart: PropTypes.bool,
+    showMonthDropdown: PropTypes.bool,
+    showWeekNumbers: PropTypes.bool,
+    showYearDropdown: PropTypes.bool,
+    startDate: PropTypes.object,
+    todayButton: PropTypes.string,
+    utcOffset: PropTypes.number
   },
 
   defaultProps: {

@@ -1,13 +1,15 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import createReactClass from 'create-react-class'
 
-var MonthDropdownOptions = React.createClass({
+var MonthDropdownOptions = createReactClass({
   displayName: 'MonthDropdownOptions',
 
   propTypes: {
-    onCancel: React.PropTypes.func.isRequired,
-    onChange: React.PropTypes.func.isRequired,
-    month: React.PropTypes.number.isRequired,
-    monthNames: React.PropTypes.arrayOf(React.PropTypes.string.isRequired).isRequired
+    onCancel: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    month: PropTypes.number.isRequired,
+    monthNames: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
   },
 
   renderOptions () {

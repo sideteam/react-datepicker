@@ -8,6 +8,7 @@ import Day from '../src/day'
 import TetherComponent from '../src/tether_component.jsx'
 import TimezoneDatePicker from './timezone_date_picker.jsx'
 import moment from 'moment'
+import createReactClass from 'create-react-class'
 
 describe('DatePicker', () => {
   let sandbox
@@ -218,7 +219,7 @@ describe('DatePicker', () => {
   })
 
   it('should mount and unmount properly', done => {
-    var TestComponent = React.createClass({
+    var TestComponent = createReactClass({
       displayName: 'TestComponent',
 
       getInitialState () {

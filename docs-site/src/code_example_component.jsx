@@ -1,12 +1,14 @@
 import React from 'react'
+import createReactClass from 'create-react-class'
+import PropTypes from 'prop-types'
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'CodeExampleComponent',
 
   propTypes: {
-    children: React.PropTypes.element,
-    id: React.PropTypes.number,
-    title: React.PropTypes.string
+    children: PropTypes.element,
+    id: PropTypes.number,
+    title: PropTypes.string
   },
 
   render () {
