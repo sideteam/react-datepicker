@@ -36,11 +36,12 @@ import MultiMonthDrp from './examples/multi_month_drp'
 import Children from './examples/children'
 import Portal from './examples/portal'
 import RawChange from './examples/raw_change'
+import createReactClass from 'create-react-class'
 
 import 'react-datepicker/dist/react-datepicker.css'
 import './style.scss'
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'exampleComponents',
 
   componentDidMount () {

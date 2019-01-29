@@ -1,28 +1,30 @@
 import moment from 'moment'
 import React from 'react'
+import PropTypes from 'prop-types'
 import { isSameDay, isDayDisabled, isSameUtcOffset } from './date_utils'
+import createReactClass from 'create-react-class'
 
-var DateInput = React.createClass({
+var DateInput = createReactClass({
   displayName: 'DateInput',
 
   propTypes: {
-    customInput: React.PropTypes.element,
-    date: React.PropTypes.object,
-    dateFormat: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.array
+    customInput: PropTypes.element,
+    date: PropTypes.object,
+    dateFormat: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array
     ]),
-    disabled: React.PropTypes.bool,
-    excludeDates: React.PropTypes.array,
-    filterDate: React.PropTypes.func,
-    includeDates: React.PropTypes.array,
-    locale: React.PropTypes.string,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    onBlur: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    onChangeRaw: React.PropTypes.func,
-    onChangeDate: React.PropTypes.func
+    disabled: PropTypes.bool,
+    excludeDates: PropTypes.array,
+    filterDate: PropTypes.func,
+    includeDates: PropTypes.array,
+    locale: PropTypes.string,
+    maxDate: PropTypes.object,
+    minDate: PropTypes.object,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    onChangeRaw: PropTypes.func,
+    onChangeDate: PropTypes.func
   },
 
   getDefaultProps () {

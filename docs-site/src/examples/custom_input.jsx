@@ -1,14 +1,16 @@
 import React from 'react'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
+import createReactClass from 'create-react-class'
+import PropTypes from 'prop-types'
 
 /* eslint-disable react/no-multi-comp */
-var ExampleCustomInput = React.createClass({
+var ExampleCustomInput = createReactClass({
   displayName: 'ExampleCustomInput',
 
   propTypes: {
-    onClick: React.PropTypes.func,
-    value: React.PropTypes.string
+    onClick: PropTypes.func,
+    value: PropTypes.string
   },
 
   render () {
@@ -22,7 +24,7 @@ var ExampleCustomInput = React.createClass({
   }
 })
 
-export default React.createClass({
+export default createReactClass({
   displayName: 'Custom Input',
 
   getInitialState () {
@@ -41,12 +43,12 @@ export default React.createClass({
     return <div className="row">
       <pre className="column example__code">
         <code className="jsx">
-            {'var ExampleCustomInput = React.createClass({'}<br />
+            {'var ExampleCustomInput = createReactClass({'}<br />
             {'displayName: "ExampleCustomInput" ,'}<br />
           <br />
             {'propTypes: {'}<br />
-              {'onClick: React.PropTypes.func,'}<br />
-              {'value: React.PropTypes.string'}<br />
+              {'onClick: PropTypes.func,'}<br />
+              {'value: PropTypes.string'}<br />
             {'},'}<br />
           <br />
             {'render () {'}<br />

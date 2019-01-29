@@ -31,7 +31,7 @@ require('react-datepicker/dist/react-datepicker.css');
 // CSS Modules, react-datepicker-cssmodules.css
 // require('react-datepicker/dist/react-datepicker-cssmodules.css');
 
-var Example = React.createClass({
+var Example = createReactClass({
   displayName: 'Example',
 
   getInitialState: function() {
