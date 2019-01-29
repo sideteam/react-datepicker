@@ -66,15 +66,12 @@ var Calendar = createReactClass({
     utcOffset: PropTypes.number
   },
 
-  defaultProps: {
-    onDropdownFocus: () => {}
-  },
-
   getDefaultProps () {
     return {
       utcOffset: moment.utc().utcOffset(),
       monthsShown: 1,
-      forceShowMonthNavigation: false
+      forceShowMonthNavigation: false,
+      onDropdownFocus: () => {}
     }
   },
 
