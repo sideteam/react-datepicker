@@ -1,6 +1,6 @@
 {
   "author": "HackerOne (edit by Side)",
-  "name": "react-datepicker-multiple",
+  "name": "side-react-datepicker-jp",
   "description": "A simple and reusable datepicker component for React",
   "version": "0.42.0",
   "license": "MIT",
@@ -99,5 +99,11 @@
     "eslint": "eslint **/*.jsx",
     "prepublish": "npm run build",
     "codecov": "cat coverage/*/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js"
+  },
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "lib": "lib",
+    "test": "test"
   }
 }
