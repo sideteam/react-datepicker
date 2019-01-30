@@ -1,6 +1,6 @@
 {
   "author": "HackerOne (edit by Side)",
-  "name": "side-react-datepicker-jp",
+  "name": "@side.co/side-react-datepicker-jp",
   "description": "A simple and reusable datepicker component for React",
   "version": "0.42.0",
   "license": "MIT",
